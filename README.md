@@ -2,20 +2,32 @@
 
 > Example app using eslint, prettier, airbnb-base, and typescript
 
+- [Install Dependencies](#install-dependencies)
+- [Create Config Files](#create-config-files)
+  - [1. `tsconfig.json`](#1-tsconfigjson)
+  - [2. `tsconfig.eslint.json`](#2-tsconfigeslintjson)
+  - [3. `.eslintrc.js`](#3-eslintrcjs)
+  - [4. `.prettierrc`](#4-prettierrc)
+- [Add npm scripts to `package.json`](#add-npm-scripts-to-packagejson)
+- [Conclusion](#conclusion)
+
 ## Install Dependencies
 
 Start by installing the necessary dependencies:
 
 ```bash
-npm install --save-dev \
-    @typescript-eslint/eslint-plugin \
-    eslint \
-    eslint-config-airbnb-base \
-    eslint-config-airbnb-typescript \
-    eslint-plugin-import \
-    eslint-plugin-prettier \
+# eslint-config-airbnb-base and all peerDependencies
+npx install-peerdeps --dev eslint-config-airbnb-base
+
+# install all other devDependencies
+npm install eslint-config-airbnb-typescript \
+    @typescript-eslint/eslint-plugin@^5.13.0 \
+    @typescript-eslint/parser@^5.0.0 \
+    typescript \
     prettier \
-    typescript
+    eslint-plugin-prettier \
+    eslint-config-prettier \
+    --save-dev
 ```
 
 ## Create Config Files
@@ -69,25 +81,26 @@ Create your eslint config at `.eslintrc.js`:
 // .eslintrc.js
 module.exports = {
   root: true,
-  extends: 'airbnb-typescript/base',
-  plugins: ['import', 'prettier'],
+  plugins: ['@typescript-eslint', 'import', 'prettier'],
+  extends: [
+    'airbnb-typescript/base',
+    'prettier',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:import/typescript',
+  ],
+  parser: '@typescript-eslint/parser',
   parserOptions: {
     project: './tsconfig.eslint.json',
   },
 };
 ```
 
-This config will:
-
-1. Extend the `airbnb-typescript/base` config
-2. Use the `import` and `prettier` eslint plugins
-3. Read settings defined in `tsconfig.eslint.json` for
-
 ### 4. `.prettierrc`
 
 Create a new `.prettierrc` file and define your own Prettier rule:
 
 ```json
+// .prettierrc
 {
   "printWidth": 80,
   "tabWidth": 2,
@@ -101,6 +114,15 @@ Create a new `.prettierrc` file and define your own Prettier rule:
   "proseWrap": "never",
   "htmlWhitespaceSensitivity": "strict",
   "endOfLine": "lf"
+}
+```
+
+## Add npm scripts to `package.json`
+
+```json
+{
+  "lint": "eslint --fix . && prettier --write .",
+  "build": "tsc"
 }
 ```
 
