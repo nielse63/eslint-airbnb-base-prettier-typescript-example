@@ -1,5 +1,5 @@
 function test(input: number): number {
-  const value: number = 1;
+  const value = 1;
   return input + value;
 }
 
