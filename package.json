@@ -1,15 +1,22 @@
 {
   "name": "eslint-airbnb-base-typescript",
   "version": "1.0.0",
-  "description": "",
+  "description": "Example app using eslint, prettier, airbnb-base, and typescript",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
-    "lint": "npx eslint ."
+    "lint": "eslint --fix . && prettier --write ."
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "prettier",
+    "eslint",
+    "eslint-config-airbnb-base",
+    "typescript",
+    "linters",
+    "formatters"
+  ],
+  "author": "Erik Nielsen <erik@312developmnt.com>",
   "license": "ISC",
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.51.0",
