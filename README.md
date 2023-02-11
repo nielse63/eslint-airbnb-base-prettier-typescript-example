@@ -16,18 +16,17 @@
 Start by installing the necessary dependencies:
 
 ```bash
-# eslint-config-airbnb-base and all peerDependencies
-npx install-peerdeps --dev eslint-config-airbnb-base
-
-# install all other devDependencies
-npm install eslint-config-airbnb-typescript \
-    @typescript-eslint/eslint-plugin@^5.13.0 \
-    @typescript-eslint/parser@^5.0.0 \
-    typescript \
-    prettier \
-    eslint-plugin-prettier \
-    eslint-config-prettier \
-    --save-dev
+npm install --save-dev \
+  @typescript-eslint/eslint-plugin \
+  @typescript-eslint/parser \
+  eslint \
+  eslint-config-airbnb-base \
+  eslint-config-airbnb-typescript \
+  eslint-config-prettier \
+  eslint-plugin-import \
+  eslint-plugin-prettier \
+  prettier \
+  typescript
 ```
 
 ## Create Config Files
@@ -99,7 +98,7 @@ module.exports = {
 
 Create a new `.prettierrc` file and define your own Prettier rule:
 
-```json
+```jsonc
 // .prettierrc
 {
   "printWidth": 80,

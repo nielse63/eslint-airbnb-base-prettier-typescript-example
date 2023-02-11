@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
-    "lint": "eslint --fix . && prettier --write ."
+    "lint": "eslint --fix . && prettier --write .",
+    "docs": "node src/update-readme.js"
   },
   "keywords": [
     "prettier",
